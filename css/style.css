@@ -1,0 +1,18 @@
+a, h1{
+	color: black;
+}
+img {
+	 width: 150px;
+	 height: 150px;
+}
+ a, h1{
+	color: red;
+}
+
+#div_url {
+	color: green;
+}
+
+div .class_div a h1{
+	border: 12px solid black;
+}
