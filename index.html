@@ -2,19 +2,28 @@
 	<head>
 		<title>hello</title>
 		<link rel="stylesheet" href="css/style.css">
-
+		<script src='js/jquery/dist/jquery.js'></script>
+		
 	</head>
 
 	<!-- <body background="img/request-a-sample--547-p.jpg"> -->
 	<body>
 		<div>
-			<div>
-				<h1>hello world!</h1>
+			<div id="head_div">
+				<h1 onclick="console.log('hjhjhj');">hello world!</h1>
  			<div><b><font color='red'>wewewe</font></b>
-				<img src="img/request-a-sample--547-p.jpg" alt="Pic" title="Pic2">
+				<img class="img_class" src="img/request-a-sample--547-p.jpg" alt="Pic" title="Pic2" onclick="
+                 var link=document.body.getElementsByTagName('a');
+        
+                 if (link[0].text==='1212'){
+    	             link[0].text='Picture'
+	             }else{
+	                 link[0].text='1212';
+	    	     }
+				">
 			</div>
 			<div>
-				<p align="center">Para <br/> para</p>
+				<p align="center" onclick="return confirm('Вы уверены?');">Para <br/> para</p>
 			</div>
 		</div>
 		<table border=4 width=200>
@@ -27,5 +36,11 @@
 
 		<a href="https://google.kg/">Google</a>
 		<a href="page/page.html">Page</a>
-	</bo1dy>
+		
+	</body>
+	<script>
+			alert('ksjdskj');
+		</script>
+
+	<script src='js/script.js'></script>
 </html>
