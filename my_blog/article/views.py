@@ -6,14 +6,14 @@ from article.models import Article
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html',{'articles': Article.objects.all()} )
+    return render(request, 'article/index.html', {'articles': Article.objects.all()})
 
 def get_article(request, id, text='1212'):
     data = {
         'article': get_object_or_404(Article, id=id),
         'text': text
     }
-    return render(request, 'article.html', data)
+    return render(request, 'article/article.html', data)
 
 from django.http import HttpResponse
 import datetime

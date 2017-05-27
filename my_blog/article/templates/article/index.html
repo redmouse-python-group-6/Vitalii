@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ block.super }}My blog{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                {% for i in articles %}
+                <div class="post-preview">
+                    <a href="{% url 'article:get_article' i.id %}">
+                        <h2 class="post-title">
+                            {{ i.title }}
+                        </h2>
+                    </a>
+                    <p class="post-meta">Posted by {{ i.author.username }} on {{ i.date_create|date:'F d, Y' }}</p>
+                </div>
+                {% endfor %}
+                <hr>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

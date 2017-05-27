@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}{{ article.title }}{% endblock %}
+{% block headers %}
+
+    <header class="intro-header" style="background-image: url({% static 'img/post-bg.jpg' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>{{ article.title }}</h1>
+                        <span class="meta">Posted by {{ article.author.username }} on {{ article.date_create|date:'F d, Y' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{% endblock %}
+
+{% block body %}
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    {{ article.body }}
+                </div>
+            </div>
+        </div>
+    </article>
+{% endblock %}
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Article id {{ article.id }}</title>#}
+{#</head>#}
+{#<body>#}
+{#<h1> &lt{{ article.title }}&gt</h1>#}
+{##}
+{#<span>Author: {{ article.author.username }}</span><br>#}
+{#<span>{{ article.get_data_create_and_update }}</span><br/>#}
+{#<span>Create: {{ article.date_create|date:"D d M Y" }} Update {{ article.date_update }}</span>#}
+{#<p>{{ article.body }}</p>#}
+{#<p>{{ text }}</p>#}
+{#</body>#}
+{#</html>#}
