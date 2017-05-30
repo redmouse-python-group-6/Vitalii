@@ -29,6 +29,10 @@ class Article(models.Model):
     def get_data_create_and_update(self):
         return "Create: %s Update: %s"%(self.date_create, self.date_update)
 
+    def get_comments(self):
+        from comments.models import Comments
+        return Comments.objects.filter(article=self, is_publick=True)
+
 
 
 

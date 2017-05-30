@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from article import views as article_views
+from comments.views import create_comment
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -24,6 +25,7 @@ urlpatterns = [
     url(r'^$', article_views.index),
     url(r'^curr_date/$', article_views.current_datetime, name='get_article'),
     url(r'^article/', include('article.urls', namespace='article')),
+    url(r'create_comment/(?P<id>\d+)/$', create_comment, name='create_comment')
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
