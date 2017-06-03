@@ -3,11 +3,11 @@
 {% block title %}{{ block.super }}My blog{% endblock %}
 
 {% block body %}
-
+    <h2>{{ my_text }}</h2>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                {% for i in articles %}
+                {% for i in object_list %}
                 <div class="post-preview">
                     <a href="{% url 'article:get_article' i.id %}">
                         <h2 class="post-title">

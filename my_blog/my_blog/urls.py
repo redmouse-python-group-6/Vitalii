@@ -15,17 +15,24 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import TemplateView, ListView
+
+from article.models import Article
+
 from article import views as article_views
 from comments.views import create_comment
+from article.views import about_view
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', article_views.index),
+    # url(r'^$', ListView.as_view(model=Article, template_name='article/index.html')),
+    url(r'^$', article_views.ArticleView.as_view()),
     url(r'^curr_date/$', article_views.current_datetime, name='get_article'),
     url(r'^article/', include('article.urls', namespace='article')),
-    url(r'create_comment/(?P<id>\d+)/$', create_comment, name='create_comment')
+    url(r'create_comment/(?P<id>\d+)/$', create_comment, name='create_comment'),
+    url(r'^about_me/$', TemplateView.as_view(template_name='about.html'), name='about_me')
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
