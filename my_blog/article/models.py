@@ -26,12 +26,19 @@ class Article(models.Model):
     category = models.ForeignKey(Category, blank=True, null=True, default=None)
 
 
+    def __str__(self):
+        return self.title
+
     def get_data_create_and_update(self):
         return "Create: %s Update: %s"%(self.date_create, self.date_update)
 
     def get_comments(self):
         from comments.models import Comments
         return Comments.objects.filter(article=self, is_publick=True)
+
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('article:get_article', args=[str(self.id)])
 
 
 
