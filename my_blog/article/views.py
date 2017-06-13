@@ -2,11 +2,14 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.cache import cache_page
+
 from article.models import Article
 from django.http import JsonResponse
 from comments.forms import CommentsForm
 
 from django.views.generic import ListView
+from django.core.cache import cache
 
 # Create your views here.
 # def index(request):
@@ -17,10 +20,16 @@ class ArticleView(ListView):
     template_name = 'article/index.html'
 
     def get_context_data(self, **kwargs):
+        count= Article.objects.all().count()
         context = super(ArticleView, self).get_context_data(**kwargs)
+        if cache.get('article%s'%count):
+            context['object_list'] = cache.get('article%s'%count)
+        else:
+            cache.set('article%s'%count, context['object_list'])
         context['my_text']='dkflkdlfkl'
         return context
 
+@cache_page(60 * 15, cache='views_cache')
 def get_article(request, id, text='1212'):
     article=get_object_or_404(Article, id=id)
     if request.method == 'POST':

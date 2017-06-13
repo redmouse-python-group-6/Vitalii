@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView, ListView
+from django.core import cache
 
 from article.models import Article
 
@@ -32,7 +33,8 @@ urlpatterns = [
     url(r'^curr_date/$', article_views.current_datetime, name='get_article'),
     url(r'^article/', include('article.urls', namespace='article')),
     url(r'create_comment/(?P<id>\d+)/$', create_comment, name='create_comment'),
-    url(r'^about_me/$', TemplateView.as_view(template_name='about.html'), name='about_me')
+    url(r'^about_me/$', TemplateView.as_view(template_name='about.html'), name='about_me'),
+    url(r'^i18n/', include('django.conf.urls.i18n'))
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

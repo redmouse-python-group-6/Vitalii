@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +68,17 @@
                     <li>
                         <a href="contact.html">Contact</a>
                     </li>
-                </ul>
+                    <form action="/i18n/setlang/" method="post">
+                    {% csrf_token %}
+                     <input name="next" type="hidden" value="/" />
+                     <select name="language">
+                         {% for lang in LANGUAGES %}
+                                 <option value="{{ lang.0 }}" {% if lang.0 == SELECTEDLANG %}selected{% endif %}>{% if lang.1 == 'Spanish' %}Español{% else %}{{ lang.1 }}{% endif %}</option>
+                         {% endfor %}
+                     </select>
+                     <input type="submit" value="Go" />
+                 </form>
+             </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -86,7 +96,7 @@
                     <div class="site-heading">
                         <h1>Clean Blog</h1>
                         <hr class="small">
-                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                        <span class="subheading">{% blocktrans %}A Clean Blog Theme by Start Bootstrap{% endblocktrans %}</span>
                     </div>
                 </div>
             </div>
